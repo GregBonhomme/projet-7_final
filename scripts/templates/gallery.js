@@ -68,7 +68,6 @@ export function galleryTemplate(data) {
 };
 
 export function testKeyword(keyword, item) {
-    console.log(keyword);
     let string = keyword.toLowerCase();
     let ingredients_list = [];
     item.ingredients.forEach(element => {

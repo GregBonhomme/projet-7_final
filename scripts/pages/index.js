@@ -1,6 +1,7 @@
 import { Recipe } from "../models/recipe.js";
 import { galleryTemplate, filterGallery } from "../templates/gallery.js";
 import { getList, printList, applyFilter, updateFilters } from "../utils/filters.js";
+import { tagsListTemplate } from "../templates/tags.js";
 
 //on vérifie si les informations sont dans le local storage
 
@@ -25,7 +26,6 @@ recipes_data.forEach(element => {
 let recipes = allRecipes;
 
 function setPageInfo() {
-    console.log(tags);
     const recipes_zone = document.getElementById("recipes_zone");
     recipes_zone.innerHTML = "";
     const ingredients_filters = document.getElementById("ingredients_filters");
@@ -41,6 +41,7 @@ function setPageInfo() {
     counter.innerText = recipes.length + " recettes";
 
     const gallery = galleryTemplate(recipes);
+    const tags_list = tagsListTemplate(tags);
     const ingredients_filters_list = printList(getList("ingredients", recipes));
     const appliances_filters_list = printList(getList("appliances", recipes));
     const ustensils_filters_list = printList(getList("ustensils", recipes));
@@ -49,12 +50,11 @@ function setPageInfo() {
     appliances_filters.appendChild(appliances_filters_list);
     ustensils_filters.appendChild(ustensils_filters_list);
     recipes_zone.appendChild(gallery);
-
+    tags_zone.appendChild(tags_list);
 
     const filters = document.querySelectorAll(".filter");
     filters.forEach(filter => {
         if (tags.includes(filter.innerText)) {
-            console.log(filter.innerText);
             filter.setAttribute("active", true);
             const filter_closeBtn = document.createElement("span");
             filter_closeBtn.setAttribute("class", "material-symbols-outlined tag_closeBtn");
@@ -62,16 +62,28 @@ function setPageInfo() {
             filter.appendChild(filter_closeBtn);
         } else {
             filter.addEventListener("click", () => {
-                console.log(filter.innerText);
                 tags.push(filter.innerText);
-                console.log(tags);
                 recipes = filterGallery(tags, allRecipes);
                 updateFilters(recipes);
                 setPageInfo();
             })
         }
     });
-}
+
+    const tag_closeBtns = document.querySelectorAll(".tag_closeBtn");
+    tag_closeBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+            console.log(btn.parentElement);
+            let targetTag = btn.parentElement.getAttribute("value");
+            console.log(btn.parentElement.getAttribute("value"));
+            tags = tags.filter((tag) => tag != targetTag);
+            console.log(tags);
+            recipes = filterGallery(tags, allRecipes);
+            updateFilters(recipes);
+            setPageInfo();
+        })
+    })
+};
 
 setPageInfo();
 

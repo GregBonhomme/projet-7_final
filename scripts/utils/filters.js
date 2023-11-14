@@ -44,6 +44,7 @@ export function printList(data) {
     data.forEach(element => {
         const filter = document.createElement("span");
         filter.setAttribute("class", "filter");
+        filter.setAttribute("value", element.charAt(0).toUpperCase() + element.slice(1));
         filter.innerText = element.charAt(0).toUpperCase() + element.slice(1);
         list.appendChild(filter);
     });
