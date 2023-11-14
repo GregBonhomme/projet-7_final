@@ -66,3 +66,36 @@ export function galleryTemplate(data) {
     });
     return gallery;
 };
+
+export function testKeyword(keyword, item) {
+    console.log(keyword);
+    let string = keyword.toLowerCase();
+    let ingredients_list = [];
+    item.ingredients.forEach(element => {
+        ingredients_list.push(element.ingredient.toLowerCase());
+    });
+    if (item.name.toLowerCase().includes(string) || item.description.toLowerCase().includes(string) || ingredients_list.includes(string)) {
+        return true;
+    } else {
+        return false;
+    }
+};
+
+export function filterGallery(data, tab) {
+    let result = [];
+    if (Array.isArray(data)) {
+        tab.forEach(element => {
+            if (data.every(r => testKeyword(r, element))) {
+                result.push(element);
+            }
+        });
+        return result;
+    } else {
+        tab.forEach(element => {
+            if (testKeyword(data, element)) {
+                result.push(element);
+            }
+        });
+        return result;
+    }
+};
