@@ -73,7 +73,11 @@ export function testKeyword(keyword, item) {
     item.ingredients.forEach(element => {
         ingredients_list.push(element.ingredient.toLowerCase());
     });
-    if (item.name.toLowerCase().includes(string) || item.description.toLowerCase().includes(string) || ingredients_list.includes(string)) {
+    let ustensils_list = []
+    item.ustensils.forEach(ustensil => {
+        ustensils_list.push(ustensil.toLowerCase());
+    })
+    if (item.name.toLowerCase().includes(string) || item.description.toLowerCase().includes(string) || ingredients_list.includes(string) || ustensils_list.includes(string)) {
         return true;
     } else {
         return false;

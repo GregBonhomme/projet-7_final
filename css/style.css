@@ -25,6 +25,10 @@
     display: none;
 }
 
+body {
+    background-color: black;
+}
+
 h1 {
     font-family: Anton;
     font-size: 44px;
@@ -66,6 +70,8 @@ h4 {
 /* HEADER */
 
 header {
+    max-width: 1440px;
+    margin: 0 auto;
     background-image: url(../assets/photos/header.png);
     background-size: cover;
     height: 660px;
@@ -85,7 +91,7 @@ header h1 {
 
 #logo {
     position: absolute;
-    left: 60px;
+    left: 17%;
     top: 60px;
     width: 205px;
 }
@@ -132,7 +138,9 @@ header h1 {
 /* MAIN */
 
 main {
-    background-color: #7A7A7A;
+    max-width: 1440px;
+    margin: 0 auto;
+    background-color: #EAEAEA;
     padding: 20px 100px;
 }
 
@@ -200,7 +208,7 @@ main {
 .recipe_counter {
     position: absolute;
     margin: 15px;
-    right: 60px;
+    right: 16%;
 }
 
 .filter {
@@ -227,6 +235,7 @@ main {
 
 .tag {
     display: flex;
+    justify-content: space-between;
     background-color: #FFD15B;
     border-radius: 10px;
     padding: 18px;
