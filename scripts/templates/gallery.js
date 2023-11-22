@@ -53,9 +53,8 @@ function cardTemplate(data) {
     card.appendChild(img);
     card.appendChild(time);
     card.appendChild(body);
-
     return card;
-};
+}
 
 
 export function galleryTemplate(data) {
@@ -65,40 +64,4 @@ export function galleryTemplate(data) {
         gallery.appendChild(cardTemplate(recipe));
     });
     return gallery;
-};
-
-export function testKeyword(keyword, item) {
-    let string = keyword.toLowerCase();
-    let ingredients_list = [];
-    item.ingredients.forEach(element => {
-        ingredients_list.push(element.ingredient.toLowerCase());
-    });
-    let ustensils_list = []
-    item.ustensils.forEach(ustensil => {
-        ustensils_list.push(ustensil.toLowerCase());
-    })
-    if (item.name.toLowerCase().includes(string) || item.description.toLowerCase().includes(string) || ingredients_list.includes(string) || ustensils_list.includes(string)) {
-        return true;
-    } else {
-        return false;
-    }
-};
-
-export function filterGallery(data, tab) {
-    let result = [];
-    if (Array.isArray(data)) {
-        tab.forEach(element => {
-            if (data.every(r => testKeyword(r, element))) {
-                result.push(element);
-            }
-        });
-        return result;
-    } else {
-        tab.forEach(element => {
-            if (testKeyword(data, element)) {
-                result.push(element);
-            }
-        });
-        return result;
-    }
-};
+}

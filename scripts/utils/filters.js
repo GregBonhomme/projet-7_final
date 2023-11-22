@@ -33,8 +33,8 @@ export function getList(select, tab) {
                 });
             });
             return list;
-    };
-};
+    }
+}
 
 //affichage d'une liste de filtre
 
@@ -49,19 +49,7 @@ export function printList(data) {
         list.appendChild(filter);
     });
     return list;
-};
-
-//application d'un filtre à une liste
-
-export function applyFilter(string, tab) {
-    let result = [];
-    tab.forEach(element => {
-        if (element.toLowerCase().includes(string)) {
-            result.push(element);
-        }
-    });
-    return result;
-};
+}
 
 //mise a jour des filtres disponibles en fonction d'une nouvelle liste de plats
 
@@ -72,4 +60,4 @@ export function updateFilters(data) {
     document.getElementById("appliances_filters").appendChild(printList(getList("appliances", data)));
     document.getElementById("ustensils_filters").innerHTML = "";
     document.getElementById("ustensils_filters").appendChild(printList(getList("ustensils", data)));
-};
+}
