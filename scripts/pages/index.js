@@ -1,6 +1,6 @@
 import { Recipe } from "../models/recipe.js";
 import { galleryTemplate } from "../templates/gallery.js";
-import { getList, printList, updateFilters } from "../utils/filters.js";
+import { getList, printList, updateFilters, filterList } from "../utils/filters.js";
 import { tagsListTemplate } from "../templates/tags.js";
 import { applyKeywords } from "../utils/keywords.js";
 
@@ -60,13 +60,9 @@ function setPageInfo(data) {
     const tag_closeBtns = document.querySelectorAll(".tag_closeBtn");
     tag_closeBtns.forEach(btn => {
         btn.addEventListener("click", () => {
-            console.log(btn.parentElement);
             let targetTag = btn.parentElement.getAttribute("value");
-            console.log(btn.parentElement.getAttribute("value"));
             tags = tags.filter((tag) => tag != targetTag);
-            console.log(tags);
             updateKeywords();
-            console.log(keywords);
             setPageInfo(applyKeywords(allRecipes, keywords));
         })
     })
@@ -78,25 +74,22 @@ setPageInfo(allRecipes);
 
 const ingredients_filter = document.querySelector("#ingredients_searchbar input");
 ingredients_filter.addEventListener("input", () => {
-    let filter = ingredients_filter.value;
     document.getElementById("ingredients_filters").innerHTML = "";
-    document.getElementById("ingredients_filters").appendChild(printList(getList("ingredients", applyKeywords(allRecipes, keywords))));
+    document.getElementById("ingredients_filters").appendChild(printList(filterList(getList("ingredients", applyKeywords(allRecipes, keywords)), ingredients_filter.value)));
     filterTrigger();
 });
 
 const appliances_filter = document.querySelector("#appliances_searchbar input");
 appliances_filter.addEventListener("input", () => {
-    let filter = appliances_filter.value;
     document.getElementById("appliances_filters").innerHTML = "";
-    document.getElementById("appliances_filters").appendChild(printList(getList("appliances", applyKeywords(allRecipes, keywords))));
+    document.getElementById("appliances_filters").appendChild(printList(filterList(getList("appliances", applyKeywords(allRecipes, keywords)), appliances_filter.value)));
     filterTrigger();
 });
 
 const ustensils_filter = document.querySelector("#ustensils_searchbar input");
 ustensils_filter.addEventListener("input", () => {
-    let filter = ustensils_filter.value;
     document.getElementById("ustensils_filters").innerHTML = "";
-    document.getElementById("ustensils_filters").appendChild(printList(getList("ustensilss", applyKeywords(allRecipes, keywords))));
+    document.getElementById("ustensils_filters").appendChild(printList(filterList(getList("ustensils", applyKeywords(allRecipes, keywords)), ustensils_filter.value)));
     filterTrigger();
 });
 

@@ -61,3 +61,16 @@ export function updateFilters(data) {
     document.getElementById("ustensils_filters").innerHTML = "";
     document.getElementById("ustensils_filters").appendChild(printList(getList("ustensils", data)));
 }
+
+//filtrage de la liste de filtres
+
+export function filterList(data, keyword) {
+    let result = [];
+    console.log(keyword);
+    data.forEach(element => {
+        if (element.includes(keyword)) {
+            result.push(element);
+        }
+    });
+    return result;
+}
