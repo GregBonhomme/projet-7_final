@@ -3,6 +3,7 @@ import { galleryTemplate } from "../templates/gallery.js";
 import { getList, printList, updateFilters, filterList } from "../utils/filters.js";
 import { tagsListTemplate } from "../templates/tags.js";
 import { applyKeywords } from "../utils/keywords.js";
+import { benchmark, TestArray } from "../utils/benchmark.js";
 
 //on vérifie si les informations sont dans le local storage
 
@@ -140,3 +141,9 @@ function filterTrigger() {
         }
     })
 };
+
+console.log(benchmark(function () {
+    TestArray.forEach(element => {
+        applyKeywords(allRecipes, element)
+    });
+}))
