@@ -1,7 +1,7 @@
 export function benchmark(func) {
-    let start = new Date().getTime();
+    let start = performance.now();
     func();
-    let end = new Date().getTime();
+    let end = performance.now();
     let duration = end - start;
     return "Le temps d'execution de cette fonction est de " + duration + " ms.";
 }

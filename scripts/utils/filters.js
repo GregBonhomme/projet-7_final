@@ -12,7 +12,7 @@ export function getList(select, tab) {
                     };
                 })
             });
-            return list;
+            return list.sort();
 
         case "appliances":
             tab.forEach(recipe => {
@@ -21,7 +21,7 @@ export function getList(select, tab) {
                     list.push(name);
                 }
             });
-            return list;
+            return list.sort();
 
         case "ustensils":
             tab.forEach(recipe => {
@@ -32,7 +32,7 @@ export function getList(select, tab) {
                     };
                 });
             });
-            return list;
+            return list.sort();
     }
 }
 
