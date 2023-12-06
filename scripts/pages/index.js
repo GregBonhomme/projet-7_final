@@ -107,12 +107,10 @@ searchbar.addEventListener("input", () => {
     searchbarKeywords = [];
     let search = searchbar.value;
     let searchWords = search.split(" ");
-    let newKeywords = [];
     searchWords.forEach(word => {
         if (word.length >= 3) {
-            newKeywords.push(word);
+            searchbarKeywords.push(word);
         }
-        searchbarKeywords = newKeywords;
         updateKeywords();
         setPageInfo(applyKeywords(allRecipes, keywords));
     });
