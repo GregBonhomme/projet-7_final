@@ -1,20 +1,19 @@
 function displayIngredients(data) {
     const list = document.createElement("div");
     list.setAttribute("class", "ingredients_list");
-    data.forEach(item => {
+    for (let i = 0; i < data.length; i++) {
         const element = document.createElement("div");
         element.setAttribute("class", "ingredient");
         const name = document.createElement("span");
         name.setAttribute("class", "ingredient_name");
-        name.innerText = item.ingredient;
+        name.innerText = data[i].ingredient;
         const info = document.createElement("span");
         info.setAttribute("class", "ingredient_info");
-        info.innerText = (item.quantity != undefined ? item.quantity : "") + " " + (item.unit != undefined ? item.unit : "");
-
+        info.innerText = (data[i].quantity != undefined ? data[i].quantity : "") + " " + (data[i].unit != undefined ? data[i].unit : "");
         element.appendChild(name);
         element.appendChild(info);
         list.appendChild(element);
-    });
+    };
     return list;
 }
 
@@ -53,6 +52,7 @@ function cardTemplate(data) {
     card.appendChild(img);
     card.appendChild(time);
     card.appendChild(body);
+
     return card;
 }
 
@@ -60,8 +60,8 @@ function cardTemplate(data) {
 export function galleryTemplate(data) {
     const gallery = document.createElement("div");
     gallery.setAttribute("id", "gallery");
-    data.forEach(recipe => {
-        gallery.appendChild(cardTemplate(recipe));
-    });
+    for (let i = 0; i < data.length; i++) {
+        gallery.appendChild(cardTemplate(data[i]));
+    }
     return gallery;
 }

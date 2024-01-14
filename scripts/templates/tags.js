@@ -15,8 +15,9 @@ function tagTemplate(string) {
 export function tagsListTemplate(data) {
     const tagsList = document.createElement("div");
     tagsList.setAttribute("id", "tags_list");
-    data.forEach(tag => {
-        tagsList.appendChild(tagTemplate(tag.toString()));
-    });
+    for (let i = 0; i < data.length; i++) {
+        tagsList.appendChild(tagTemplate(data[i].toString()));
+    };
     return tagsList;
-}
+};
+

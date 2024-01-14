@@ -1,27 +1,56 @@
-
-function testKeyword(keyword, item) {
-    let string = keyword.toLowerCase();
-    let ingredients_list = [];
-    item.ingredients.forEach(element => {
-        ingredients_list.push(element.ingredient.toLowerCase());
-    });
-    let ustensils_list = [];
-    item.ustensils.forEach(ustensil => {
-        ustensils_list.push(ustensil.toLowerCase());
-    });
-    if (item.name.toLowerCase().includes(string) || item.description.toLowerCase().includes(string) || ingredients_list.includes(string) || ustensils_list.includes(string) || item.appliance.toLowerCase().includes(string)) {
-        return true;
-    } else {
-        return false;
+export function applyKeywords(data, keywords) {
+    let result = [];
+    for (let i = 0; i < data.length; i++) {
+        let matches = 0;
+        for (let j = 0; j < keywords.length; j++) {
+            if (testKeyword(data[i], keywords[j])) {
+                matches++;
+            }
+        }
+        if (matches == (keywords.length)) {
+            result.push(data[i]);
+        }
     }
+    return result;
 }
 
-export function applyKeywords(tab, keywords) {
-    let result = [];
-    tab.forEach(element => {
-        if (keywords.every(r => testKeyword(r, element))) {
-            result.push(element);
+function testKeyword(item, keyword) {
+    let string = keyword.toLowerCase();
+    let ingredients_list = [];
+    for (let i = 0; i < item.ingredients.length; i++) {
+        ingredients_list.push(item.ingredients[i].ingredient.toLowerCase());
+    }
+    let ustensils_list = [];
+    for (let j = 0; j < item.ustensils.length; j++) {
+        ustensils_list.push(item.ustensils[j].toLowerCase());
+
+    }
+    let name = item.name.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").split(" ");
+    let description = item.description.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").split(" ");
+
+    if (testString(name, string)) {
+        return true;
+    }
+    if (testString(description, string)) {
+        return true;
+    }
+    if (testString(ingredients_list, string)) {
+        return true;
+    }
+    if (testString(ustensils_list, string)) {
+        return true;
+    }
+    if (testString(item.appliance, string)) {
+        return true;
+    }
+    return false;
+}
+
+function testString(text, string) {
+    for (let i = 0; i < text.length; i++) {
+        if (text[i].includes(string)) {
+            return true;
         }
-    });
-    return result;
+    }
+    return false;
 }
