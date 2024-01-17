@@ -112,6 +112,7 @@ header h1 {
 }
 
 #searchbar button {
+    background-color: black;
     position: relative;
     display: flex;
     justify-content: center;
@@ -122,7 +123,7 @@ header h1 {
     height: 50px;
 }
 
-.btn:hover {
+#searchbar button:hover {
     background-color: #FFD15B;
     border-color: transparent;
 }
@@ -131,7 +132,7 @@ header h1 {
     color: white;
 }
 
-.btn:hover .searchbar_icon {
+#searchbar button:hover .searchbar_icon {
     color: black;
 }
 
@@ -141,43 +142,62 @@ main {
     max-width: 1440px;
     margin: 0 auto;
     background-color: #EAEAEA;
-    padding: 20px 100px;
 }
 
 #menus {
     display: flex;
     gap: 65px;
-    margin-bottom: 40px;
+    padding: 20px 7% 0 7%;
 }
 
 #filters_zone {
     width: 100%;
 }
 
-.menu_select {
+.accordion {
     width: 200px;
+    max-height: 50px;
+    background-color: white;
+    border: none;
+    border-radius: 11px;
 }
 
-.collapsed {
-    border-radius: 11px !important;
+.opened {
+    max-height: 250px;
 }
 
-.accordion-button {
-    border-radius: 11px 11px 0px 0px;
+.accordion-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 7.5px 12px;
 }
 
-.accordion-button:focus {
+.accordion-title {
+    flex: 85% 1 0;
+}
+
+.accordion-arrow {
+    font-size: 35px;
+    transition: all 0.2s;
+}
+
+.accordion-arrow:focus {
     border-color: transparent;
     box-shadow: none;
 }
 
-.accordion {
-    border: none;
-    --bs-accordion-active-bg: white;
+.collapsed {
+    transform: rotate(-180deg);
+}
+
+.accordion-collapse {
+    display: none;
 }
 
 .accordion-body {
-    background-color: white;
     border-radius: 0px 0px 11px 11px;
     max-height: 200px;
     overflow: scroll;
@@ -215,7 +235,6 @@ main {
     cursor: pointer;
     padding: 0.5rem 1rem;
     display: flex;
-    width: 100%;
     justify-content: space-between;
 }
 
@@ -240,13 +259,15 @@ main {
     border-radius: 10px;
     padding: 18px;
     flex: 20% 1 0;
-    max-width: 200px;
+    max-width: 180px;
+    font-weight: 500;
 }
 
 #tags_list {
     display: flex;
     flex-wrap: wrap;
     gap: 2%;
+    padding: 20px 7%;
 }
 
 .tag_text {
@@ -254,12 +275,12 @@ main {
 }
 
 .tag_closeBtn {
-    font-size: 16px;
+    font-size: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 22px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     color: black;
     cursor: pointer;
 }
@@ -270,17 +291,24 @@ main {
     background-color: black;
 }
 
+.show {
+    display: block !important;
+}
+
 /* GALLERY */
 
 #gallery {
     margin-top: 50px;
+    padding: 0 50px;
     display: flex;
     flex-wrap: wrap;
-    gap: 6%;
+    gap: 4%;
+    padding: 0 6.5%;
 }
 
 .card {
-    max-width: 29%;
+    max-width: 380px;
+    flex: 30% 1 0;
     border-radius: 21px;
     box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
     margin-bottom: 60px;
@@ -288,27 +316,32 @@ main {
 }
 
 .card img {
-    height: 250px;
+    height: 254px;
     object-fit: cover;
     aspect-ratio: 3/2;
     border-radius: 21px 21px 0px 0px;
 }
 
 .card_time {
+    width: 40px;
     background-color: #FFD15B;
     border-radius: 14px;
     font-size: 12px;
     font-weight: 500;
     padding: 5px 15px;
-    position: absolute;
-    top: 20px;
-    right: 20px;
+    text-align: center;
+    float: inline-end;
+    position: relative;
+    top: -244px;
+    right: 14px;
 }
 
 .card-body {
+    width: 100%;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
+    padding: 2em;
 }
 
 .card-description {

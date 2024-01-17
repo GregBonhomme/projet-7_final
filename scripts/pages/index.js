@@ -77,7 +77,7 @@ function setPageInfo(data) {
             setPageInfo(applyKeywords(allRecipes, keywords));
         })
     }
-};
+}
 
 setPageInfo(allRecipes);
 
@@ -85,7 +85,7 @@ setPageInfo(allRecipes);
 
 const ingredients_filter = document.querySelector("#ingredients_searchbar input");
 ingredients_filter.addEventListener("input", () => {
-    let filter = ingredients_filter.value;
+    let filter = sanitizer(ingredients_filter.value);
     document.getElementById("ingredients_filters").innerHTML = "";
     document.getElementById("ingredients_filters").appendChild(printList(filterList(getList("ingredients", applyKeywords(allRecipes, keywords)), filter)));
     filterTrigger();
@@ -93,7 +93,7 @@ ingredients_filter.addEventListener("input", () => {
 
 const appliances_filter = document.querySelector("#appliances_searchbar input");
 appliances_filter.addEventListener("input", () => {
-    let filter = appliances_filter.value;
+    let filter = sanitizer(appliances_filter.value);
     document.getElementById("appliances_filters").innerHTML = "";
     document.getElementById("appliances_filters").appendChild(printList(filterList(getList("appliances", applyKeywords(allRecipes, keywords)), filter)));
     filterTrigger();
@@ -101,7 +101,7 @@ appliances_filter.addEventListener("input", () => {
 
 const ustensils_filter = document.querySelector("#ustensils_searchbar input");
 ustensils_filter.addEventListener("input", () => {
-    let filter = ustensils_filter.value;
+    let filter = sanitizer(ustensils_filter.value);
     document.getElementById("ustensils_filters").innerHTML = "";
     document.getElementById("ustensils_filters").appendChild(printList(filterList(getList("ustensils", applyKeywords(allRecipes, keywords)), filter)));
     filterTrigger();
@@ -117,7 +117,7 @@ function keywordsUpdate() {
 
 const searchbar = document.querySelector("#searchbar input");
 searchbar.addEventListener("input", () => {
-    let search = searchbar.value;
+    let search = sanitizer(searchbar.value);
     let searchWords = search.split(" ");
     searchbarKeywords = [];
     for (let i = 0; i < searchWords.length; i++) {
@@ -158,10 +158,30 @@ function filterTrigger() {
             })
         }
     }
-};
+}
+
+//fonction de suppression des charactères spéciaux
+
+function sanitizer(string) {
+    return string.replace(/[~`!@#$%^&*()+={}\[\];:\'\"<>.,\/\\\?-_]/g, '');
+}
+
+
+//ouverture et fermeture des menus de sélections des filtres
+
+const accordionMenus = document.querySelectorAll(".accordion");
+accordionMenus.forEach(menu => {
+    console.log(menu.querySelector(".accordion-header"));
+    menu.querySelector(".accordion-header").addEventListener("click", () => {
+        menu.classList.toggle("opened");
+        menu.querySelector(".accordion-arrow").classList.toggle("collapsed")
+        menu.querySelector(".accordion-collapse").classList.toggle("show")
+    })
+})
+
 
 console.log(benchmark(function () {
     for (let i = 0; i < TestArray.length; i++) {
         applyKeywords(allRecipes, TestArray[i]);
-    };
+    }
 }))
