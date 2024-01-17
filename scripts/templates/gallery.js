@@ -24,7 +24,7 @@ function cardTemplate(data) {
     card.setAttribute("class", "card");
     const img = document.createElement("img");
     img.setAttribute("src", data.image);
-    const time = document.createElement("span");
+    const time = document.createElement("div");
     time.setAttribute("class", "card_time");
     time.innerText = data.time + " min";
     const body = document.createElement("div");

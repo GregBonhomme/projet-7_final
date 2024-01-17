@@ -9,7 +9,7 @@ export function getList(select, tab) {
                     let name = item.ingredient.toLowerCase().split(" (")[0];
                     if (!(list.includes(name))) {
                         list.push(name);
-                    };
+                    }
                 })
             });
             return list.sort();
@@ -29,7 +29,7 @@ export function getList(select, tab) {
                     let name = ustensil.toLowerCase().split(" (")[0];
                     if (!(list.includes(name))) {
                         list.push(name);
-                    };
+                    }
                 });
             });
             return list.sort();
@@ -74,3 +74,4 @@ export function filterList(data, keyword) {
     });
     return result;
 }
+
