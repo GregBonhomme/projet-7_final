@@ -143,7 +143,7 @@ function filterTrigger() {
 //fonction de suppression des charactères spéciaux
 
 function sanitizer(string) {
-    return string.replace(/[~`!@#$%^&*()+={}\[\];:\'\"<>.,\/\\\?-_]/g, '');
+    return string.replace(/[~`!@#$%^&*()+={}[\];:'"<>.,/?-_]/g, '');
 }
 
 //ouverture et fermeture des menus de sélections des filtres
